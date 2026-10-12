@@ -16,11 +16,10 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from django.views.generic import RedirectView
+from productos.root_views import api_root
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('productos.urls')),
-    # La raíz del sitio redirige directo al catálogo para no dejar un 404 en "/"
-    path('', RedirectView.as_view(pattern_name='producto_list'), name='home'),
+    path('', api_root, name='api_root'),
 ]

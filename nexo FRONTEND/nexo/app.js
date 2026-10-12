@@ -14,7 +14,7 @@
     get(k, d) { try { const v = localStorage.getItem(k); return v ? JSON.parse(v) : d; } catch (e) { return d; } },
     set(k, v) { try { localStorage.setItem(k, JSON.stringify(v)); } catch (e) { /* sin espacio */ } }
   };
-  const API_URL = 'http://localhost:8000/api';
+  const API_URL = `http://${window.location.hostname}:8000/api`;
   const csrfToken = () => document.cookie.split('; ').find((row) => row.startsWith('csrftoken='))?.split('=')[1] || '';
   async function api(path, options = {}) {
     if (!document.cookie.includes('csrftoken=')) await fetch(API_URL + '/auth/csrf/', { credentials: 'include' });
@@ -207,17 +207,15 @@
   }
 
   /* ---------- 1. Inicio de sesión ---------- */
-  $('#login-form').addEventListener('submit', (e) => {
+  $('#login-form').addEventListener('submit', async (e) => {
     e.preventDefault();
     const email = $('#login-email').value.trim().toLowerCase();
     const pass = $('#login-pass').value;
     const err = $('#login-error');
     if (!email || !pass) { err.textContent = 'Ingresa tu correo y tu contraseña.'; err.hidden = false; return; }
-    try {
-      const result = await api('/auth/login/', { method: 'POST', body: JSON.stringify({ email, password: pass }) });
-      err.hidden = true;
-      enterApp(result.user, $('#login-remember').checked);
-    } catch (error) { err.textContent = error.message; err.hidden = false; }
+    api('/auth/login/', { method: 'POST', body: JSON.stringify({ email, password: pass }) })
+      .then((result) => { err.hidden = true; enterApp(result.user, $('#login-remember').checked); })
+      .catch((error) => { err.textContent = error.message; err.hidden = false; });
   });
   $('#forgot-link').addEventListener('click', (e) => { e.preventDefault(); toast('Te enviaremos un enlace para restablecer tu contraseña'); });
 
@@ -235,7 +233,7 @@
   $('#reg-pass').addEventListener('input', updateStrength);
   $('#reg-pass2').addEventListener('input', updateStrength);
 
-  $('#register-form').addEventListener('submit', (e) => {
+  $('#register-form').addEventListener('submit', async (e) => {
     e.preventDefault();
     const name = $('#reg-name').value.trim(), company = $('#reg-company').value.trim();
     const email = $('#reg-email').value.trim().toLowerCase();
@@ -247,14 +245,15 @@
     if (!passOk(p)) return fail('La contraseña debe tener mínimo 8 caracteres, una letra y un número.');
     if (p !== p2) return fail('Las contraseñas no coinciden.');
     if (!$('#reg-terms').checked) return fail('Debes aceptar los Términos de uso y la Política de privacidad.');
-    try {
-      const result = await api('/auth/register/', { method: 'POST', body: JSON.stringify({ name, company, email, password: p }) });
-      err.hidden = true;
-      $('#register-form').reset();
-      updateStrength();
-      toast('¡Cuenta creada! Bienvenido/a a Nexo');
-      enterApp(result.user, true);
-    } catch (error) { fail(error.message); }
+    api('/auth/register/', { method: 'POST', body: JSON.stringify({ name, company, email, password: p }) })
+      .then((result) => {
+        err.hidden = true;
+        $('#register-form').reset();
+        updateStrength();
+        toast('¡Cuenta creada! Bienvenido/a a Nexo');
+        enterApp(result.user, true);
+      })
+      .catch((error) => fail(error.message));
   });
 
   /* mostrar / ocultar contraseña */
