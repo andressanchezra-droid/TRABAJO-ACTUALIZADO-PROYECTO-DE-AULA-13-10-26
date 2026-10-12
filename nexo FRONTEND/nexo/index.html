@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Nexo · Sistema de inventario</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- ============ 1. INICIO DE SESIÓN ============ -->
+  <section id="view-login" class="auth view" hidden>
+    <aside class="auth-brand">
+      <div class="brand-row light"><span class="logo-tile" data-icon="logo"></span><span class="brand-name">nexo</span></div>
+      <p class="eyebrow">INVENTARIO SIMPLE. NEGOCIOS MÁS FUERTES.</p>
+      <h2>Todo tu negocio.<br>Un solo lugar.</h2>
+      <p class="brand-text">Conecta tus productos, tu equipo y tus ventas. Toma decisiones con la tranquilidad de tener todo bajo control.</p>
+      <div class="photo-card">
+        <img src="img/bodega.jpg" alt="Bodega con inventario ordenado">
+        <div class="photo-chip">
+          <span class="chip-icon" data-icon="check"></span>
+          <div><strong>Cada producto, en su lugar.</strong><small>Inventario conectado en tiempo real</small></div>
+        </div>
+      </div>
+      <div class="brand-points"><span><i data-icon="shield"></i> Datos protegidos</span><span><i data-icon="refresh"></i> Siempre actualizado</span></div>
+      <p class="brand-foot">© 2026 Nexo · Hecho para crecer contigo.</p>
+    </aside>
+
+    <main class="auth-main">
+      <div class="auth-top">¿Nuevo por aquí? <a href="#" data-auth="register">Registrar cuenta →</a></div>
+      <div class="auth-box">
+        <div class="icon-tile"><i data-icon="logIn"></i></div>
+        <h1>Qué bueno verte de nuevo</h1>
+        <p class="sub">Inicia sesión para continuar gestionando tu negocio.</p>
+
+        <form id="login-form" novalidate>
+          <label for="login-email">Correo electrónico</label>
+          <div class="input-icon"><input type="email" id="login-email" value="ana@novacomercial.mx" autocomplete="username"><i data-icon="mail"></i></div>
+
+          <label for="login-pass">Contraseña</label>
+          <div class="input-icon"><input type="password" id="login-pass" value="Nexo2026Demo" autocomplete="current-password"><button type="button" class="eye" data-eye="login-pass" aria-label="Mostrar u ocultar contraseña"><i data-icon="eyeOff"></i></button></div>
+
+          <div class="row-between">
+            <label class="check"><input type="checkbox" id="login-remember" checked><span class="box"></span> Recordarme</label>
+            <a href="#" id="forgot-link" class="link-strong">¿Olvidaste tu contraseña?</a>
+          </div>
+
+          <p class="form-error" id="login-error" hidden></p>
+          <button type="submit" class="btn btn-primary btn-block"><i data-icon="arrowRight"></i> Iniciar sesión</button>
+          <p class="secure"><i data-icon="lock"></i> Tu información está segura y encriptada.</p>
+        </form>
+      </div>
+      <div class="auth-bottom"><a href="#" data-toast="Soporte: soporte@nexo.mx">¿Problemas para entrar? Contactar soporte</a><a href="#" data-toast="Aviso de privacidad próximamente">Privacidad</a></div>
+    </main>
+  </section>
+
+  <!-- ============ 2. REGISTRO DE CUENTA ============ -->
+  <section id="view-register" class="auth view" hidden>
+    <aside class="auth-brand">
+      <div class="brand-row light"><span class="logo-tile" data-icon="logo"></span><span class="brand-name">nexo</span></div>
+      <p class="eyebrow">INVENTARIO SIMPLE. NEGOCIOS MÁS FUERTES.</p>
+      <h2>Todo tu negocio.<br>Un solo lugar.</h2>
+      <p class="brand-text">Conecta tus productos, tu equipo y tus ventas. Toma decisiones con la tranquilidad de tener todo bajo control.</p>
+      <div class="photo-card">
+        <img src="img/bodega.jpg" alt="Bodega con inventario ordenado">
+        <div class="photo-chip">
+          <span class="chip-icon" data-icon="check"></span>
+          <div><strong>Cada producto, en su lugar.</strong><small>Inventario conectado en tiempo real</small></div>
+        </div>
+      </div>
+      <div class="brand-points"><span><i data-icon="shield"></i> Datos protegidos</span><span><i data-icon="refresh"></i> Siempre actualizado</span></div>
+      <p class="brand-foot">© 2026 Nexo · Hecho para crecer contigo.</p>
+    </aside>
+
+    <main class="auth-main">
+      <div class="auth-top">¿Ya tienes una cuenta? <a href="#" data-auth="login">Iniciar sesión →</a></div>
+      <div class="auth-box wide">
+        <h1>Empieza con Nexo</h1>
+        <p class="sub">Crea tu cuenta y dale a tu inventario un nuevo orden.</p>
+
+        <form id="register-form" novalidate>
+          <label for="reg-name">Nombre completo *</label>
+          <div class="input-icon"><input type="text" id="reg-name" placeholder="Ana Martínez" autocomplete="name"></div>
+
+          <label for="reg-company">Nombre de tu empresa *</label>
+          <div class="input-icon"><input type="text" id="reg-company" placeholder="Nova Comercial"><i data-icon="building"></i></div>
+
+          <label for="reg-email">Correo electrónico *</label>
+          <div class="input-icon"><input type="email" id="reg-email" placeholder="ana@novacomercial.mx" autocomplete="email"><i data-icon="mail"></i></div>
+
+          <div class="grid-2">
+            <div>
+              <label for="reg-pass">Contraseña *</label>
+              <div class="input-icon"><input type="password" id="reg-pass" placeholder="••••••••" autocomplete="new-password"><button type="button" class="eye" data-eye="reg-pass" aria-label="Mostrar u ocultar contraseña"><i data-icon="eyeOff"></i></button></div>
+            </div>
+            <div>
+              <label for="reg-pass2">Confirmar contraseña *</label>
+              <div class="input-icon"><input type="password" id="reg-pass2" placeholder="••••••••" autocomplete="new-password"><button type="button" class="eye" data-eye="reg-pass2" aria-label="Mostrar u ocultar contraseña"><i data-icon="eyeOff"></i></button></div>
+            </div>
+          </div>
+
+          <p class="strength" id="reg-strength"><i data-icon="checkCircle"></i> <span>Mínimo 8 caracteres, una letra y un número</span></p>
+
+          <label class="check"><input type="checkbox" id="reg-terms"><span class="box"></span> Acepto los Términos de uso y la Política de privacidad.</label>
+
+          <p class="form-error" id="register-error" hidden></p>
+          <button type="submit" class="btn btn-primary btn-block"><i data-icon="arrowRight"></i> Crear cuenta</button>
+          <p class="secure center">Sin tarjeta de crédito. Tu primer paso hacia una mejor gestión.</p>
+        </form>
+      </div>
+    </main>
+  </section>
+
+  <!-- ============ APLICACIÓN (después de iniciar sesión) ============ -->
+  <div id="app" class="app view" hidden>
+    <aside class="sidebar" id="sidebar">
+      <div class="brand-row"><span class="logo-tile" data-icon="logo"></span><span class="brand-name">nexo</span></div>
+      <div class="company-card"><strong id="company-name">Nova Comercial</strong><span>Sucursal principal · México</span></div>
+      <p class="nav-title">ESPACIO DE TRABAJO</p>
+      <nav class="nav">
+        <button data-page="dashboard" class="nav-item"><i data-icon="grid"></i> Panel general</button>
+        <button data-page="inventory" class="nav-item"><i data-icon="box"></i> Inventario</button>
+        <button data-page="admin" class="nav-item"><i data-icon="users"></i> Administración</button>
+        <button data-page="sales" class="nav-item"><i data-icon="cart"></i> Registro de ventas</button>
+        <button data-page="add" class="nav-item"><i data-icon="boxPlus"></i> Agregar producto</button>
+      </nav>
+
+      <div class="sidebar-bottom">
+        <div class="help-card">
+          <i data-icon="help"></i>
+          <strong>¿Necesitas una mano?</strong>
+          <p>Consulta nuestra guía de inventario.</p>
+          <a href="#" data-toast="Centro de ayuda próximamente">Ir al centro de ayuda <i data-icon="external"></i></a>
+        </div>
+        <div class="user-row">
+          <span class="avatar" id="side-avatar">AM</span>
+          <div><strong id="side-name">Ana Martínez</strong><small id="side-role">Administradora</small></div>
+        </div>
+        <button class="logout-btn" id="open-logout"><i data-icon="logOut"></i> Cerrar sesión</button>
+      </div>
+    </aside>
+
+    <div class="main-wrap">
+      <header class="topbar">
+        <button class="menu-btn" id="menu-btn" aria-label="Menú"><i data-icon="grid"></i></button>
+        <div class="crumbs">Nexo <span>/</span> <strong id="crumb">Panel general</strong></div>
+        <div class="top-right"><span class="pill ok">Sistema actualizado</span><span class="bell" data-icon="bell"></span><span id="top-date" class="top-date">7 oct 2026</span></div>
+      </header>
+
+      <main class="content">
+
+        <!-- 3. PANEL GENERAL -->
+        <section id="page-dashboard" class="page">
+          <div class="page-head">
+            <div><h1 id="dash-title">Hola, Ana. Todo bajo control.</h1><p class="sub" id="dash-sub"></p></div>
+            <button class="btn btn-primary" data-page="sales"><i data-icon="plus"></i> Nueva venta</button>
+          </div>
+
+          <div class="cards-4">
+            <div class="card kpi"><div class="kpi-top"><span>Ventas de hoy</span><i data-icon="wallet"></i></div><strong id="k-sales">$0.00</strong><small class="teal" id="k-sales-sub"></small></div>
+            <div class="card kpi"><div class="kpi-top"><span>Productos activos</span><i data-icon="box"></i></div><strong id="k-active">0</strong><small class="teal" id="k-active-sub"></small></div>
+            <div class="card kpi"><div class="kpi-top"><span>Unidades en inventario</span><i data-icon="logo"></i></div><strong id="k-units">0</strong><small class="teal" id="k-units-sub"></small></div>
+            <div class="card kpi"><div class="kpi-top"><span>Alertas de stock</span><i data-icon="alert"></i></div><strong id="k-alerts">0</strong><small class="amber" id="k-alerts-sub"></small></div>
+          </div>
+
+          <div class="dash-grid">
+            <div class="card">
+              <h3>Ventas de la semana</h3>
+              <p class="muted">Ingresos diarios · MXN</p>
+              <div class="week-total"><strong id="week-total">$0.00</strong><span class="pill ok">↗ 8.2% esta semana</span></div>
+              <div class="chart">
+                <div class="y-axis"><span>$2,000</span><span>$1,000</span><span>$0</span></div>
+                <div class="bars" id="bars"></div>
+              </div>
+            </div>
+
+            <div class="card">
+              <h3>Necesitan tu atención</h3>
+              <p class="muted">Evita quedarte sin existencias</p>
+              <ul class="attention" id="attention"></ul>
+              <a href="#" class="link-strong" data-page="inventory">Revisar inventario →</a>
+            </div>
+
+            <div class="card">
+              <h3>Últimas ventas</h3>
+              <table class="table simple">
+                <thead><tr><th>Folio</th><th>Cliente</th><th>Total</th><th>Hora</th></tr></thead>
+                <tbody id="recent-sales"></tbody>
+              </table>
+            </div>
+
+            <div class="card">
+              <h3>Tu operación, al día</h3>
+              <p class="muted">Continúa donde lo dejaste</p>
+              <button class="btn btn-primary btn-block" data-page="sales"><i data-icon="cart"></i> Registrar una venta</button>
+              <button class="btn btn-outline btn-block" data-page="add"><i data-icon="boxPlus"></i> Agregar un producto</button>
+              <p class="muted small">Tus cambios se sincronizan automáticamente con todo el equipo.</p>
+            </div>
+          </div>
+        </section>
+
+        <!-- 4. INVENTARIO -->
+        <section id="page-inventory" class="page" hidden>
+          <div class="page-head">
+            <div><h1>Inventario</h1><p class="sub">Consulta, organiza y mantén tus productos siempre al día.</p></div>
+            <button class="btn btn-primary" data-page="add"><i data-icon="plus"></i> Agregar producto</button>
+          </div>
+
+          <div class="cards-4">
+            <div class="card kpi"><div class="kpi-top"><span>Total de productos</span><i data-icon="box"></i></div><strong id="i-total">0</strong><small class="teal" id="i-total-sub"></small></div>
+            <div class="card kpi"><div class="kpi-top"><span>Unidades disponibles</span><i data-icon="logo"></i></div><strong id="i-units">0</strong><small class="teal">Inventario de sucursal principal</small></div>
+            <div class="card kpi"><div class="kpi-top"><span>Stock bajo</span><i data-icon="alert"></i></div><strong id="i-low">0</strong><small class="amber">Requiere reposición</small></div>
+            <div class="card kpi"><div class="kpi-top"><span>Sin existencias</span><i data-icon="box"></i></div><strong id="i-out">0</strong><small class="amber" id="i-out-sub"></small></div>
+          </div>
+
+          <div class="card">
+            <div class="tabs" id="inv-tabs">
+              <button class="tab active" data-tab="all">Todos los productos <span class="count" id="c-all">0</span></button>
+              <button class="tab" data-tab="low">Stock bajo <span class="count" id="c-low">0</span></button>
+              <button class="tab" data-tab="out">Agotados <span class="count" id="c-out">0</span></button>
+            </div>
+            <div class="toolbar">
+              <div class="search"><i data-icon="search"></i><input type="text" id="inv-search" placeholder="Buscar por nombre o código SKU..."></div>
+              <select id="inv-cat"><option value="">Todas las categorías</option></select>
+            </div>
+            <div class="table-wrap">
+              <table class="table">
+                <thead><tr><th>Producto</th><th>Categoría</th><th>Stock</th><th>Precio</th><th>Estado</th><th></th></tr></thead>
+                <tbody id="inv-body"></tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <!-- 5. ADMINISTRACIÓN -->
+        <section id="page-admin" class="page" hidden>
+          <div class="page-head">
+            <div><h1>Administración</h1><p class="sub">Gestiona a tu equipo y define quién puede hacer qué.</p></div>
+            <button class="btn btn-primary" id="open-invite"><i data-icon="userPlus"></i> Invitar usuario</button>
+          </div>
+
+          <div class="card">
+            <h3 id="team-title">Equipo de Nova Comercial</h3>
+            <p class="muted" id="team-sub"></p>
+            <div class="toolbar">
+              <div class="search"><i data-icon="search"></i><input type="text" id="team-search" placeholder="Buscar por nombre o correo electrónico..."></div>
+            </div>
+            <div class="table-wrap">
+              <table class="table">
+                <thead><tr><th>Usuario</th><th>Rol</th><th>Estado</th><th>Último acceso</th></tr></thead>
+                <tbody id="team-body"></tbody>
+              </table>
+            </div>
+          </div>
+
+          <div class="section-title"><h3>Roles y permisos</h3></div>
+          <div class="cards-3">
+            <div class="card role"><h4><i data-icon="shield"></i> Administración</h4><p>Control completo del sistema.</p><hr><small>Usuarios y roles · configuración · inventario · ventas</small></div>
+            <div class="card role"><h4><i data-icon="clipboard"></i> Supervisión</h4><p>Control de la operación diaria.</p><hr><small>Editar productos · ajustar stock · consultar reportes</small></div>
+            <div class="card role"><h4><i data-icon="bag"></i> Ventas</h4><p>Atención y registro de ventas.</p><hr><small>Registrar ventas · consultar productos y existencias</small></div>
+          </div>
+        </section>
+
+        <!-- 6. REGISTRO DE VENTAS -->
+        <section id="page-sales" class="page" hidden>
+          <div class="page-head">
+            <div><h1>Registrar venta</h1><p class="sub">Selecciona los productos y confirma los detalles de la operación.</p></div>
+          </div>
+
+          <div class="sales-grid">
+            <div class="sales-left">
+              <div class="card">
+                <h3>Datos de la venta</h3>
+                <div class="grid-2">
+                  <div><label for="s-client">Cliente</label>
+                    <select id="s-client"><option>Carlos Mendoza</option><option>Laura Gómez</option><option>Público general</option></select></div>
+                  <div><label for="s-date">Fecha de venta</label><div class="input-icon"><input type="text" id="s-date" readonly><i data-icon="calendar"></i></div></div>
+                </div>
+              </div>
+
+              <div class="card">
+                <h3>Seleccionar productos</h3>
+                <p class="muted">Precios en MXN, sin IVA · Almacén principal</p>
+                <div class="search"><i data-icon="search"></i><input type="text" id="s-search" placeholder="Buscar producto..."></div>
+                <div class="product-grid" id="product-grid"></div>
+              </div>
+
+              <div class="card">
+                <h3>Productos de la venta</h3>
+                <p class="muted" id="cart-sub">0 productos · 0 unidades</p>
+                <div id="cart-list"></div>
+              </div>
+            </div>
+
+            <aside class="sales-right">
+              <div class="card">
+                <h3>Resumen de venta</h3>
+                <div class="folio-row"><span id="s-folio">Folio V-1049</span><span class="pill gray">En preparación</span></div>
+                <div class="sum-rows">
+                  <div><span>Subtotal</span><b id="s-sub">$0.00</b></div>
+                  <div><span>Descuento (0%)</span><b>$0.00</b></div>
+                  <div><span>IVA (16%)</span><b id="s-iva">$0.00</b></div>
+                </div>
+                <div class="total-row"><span>Total</span><strong id="s-total">$0.00</strong></div>
+                <label for="s-pay">Método de pago *</label>
+                <select id="s-pay"><option>Tarjeta de débito / crédito</option><option>Efectivo</option><option>Transferencia</option></select>
+                <p class="form-error" id="sale-error" hidden></p>
+                <button class="btn btn-primary btn-block" id="confirm-sale"><i data-icon="check"></i> Confirmar y registrar venta</button>
+                <button class="btn btn-outline btn-block" id="cancel-sale">Cancelar venta</button>
+              </div>
+              <div class="note-box"><i data-icon="refresh"></i> Al confirmar, el stock se actualizará automáticamente y se generará el comprobante de venta.</div>
+            </aside>
+          </div>
+        </section>
+
+        <!-- 7. AGREGAR PRODUCTO -->
+        <section id="page-add" class="page" hidden>
+          <div class="page-head">
+            <div><h1>Agregar producto</h1><p class="sub">Completa la información para dar de alta un nuevo producto.</p></div>
+            <small class="muted">* Campos obligatorios</small>
+          </div>
+
+          <form id="add-form" class="add-grid" novalidate>
+            <div class="add-left">
+              <div class="card">
+                <h3>Información general</h3>
+                <p class="muted">Identifica tu producto en el catálogo.</p>
+                <label for="p-name">Nombre del producto *</label>
+                <input type="text" id="p-name" placeholder="Auriculares Studio Pro">
+                <div class="grid-2">
+                  <div><label for="p-sku">Código SKU *</label><input type="text" id="p-sku" placeholder="ELE-007"></div>
+                  <div><label for="p-cat">Categoría *</label>
+                    <select id="p-cat"><option>Accesorios</option><option>Pantallas</option><option selected>Audio</option><option>Cables</option></select></div>
+                </div>
+                <label for="p-desc">Descripción</label>
+                <textarea id="p-desc" rows="3" placeholder="Auriculares inalámbricos con cancelación de ruido, autonomía de 30 horas y conexión Bluetooth 5.3."></textarea>
+              </div>
+
+              <div class="card">
+                <h3>Precios e inventario</h3>
+                <p class="muted">Configura los valores iniciales del producto.</p>
+                <div class="grid-2">
+                  <div><label for="p-cost">Precio de costo *</label><input type="number" id="p-cost" min="0" step="0.01" placeholder="$ 42.00"><small class="muted">MXN · sin IVA</small></div>
+                  <div><label for="p-price">Precio de venta *</label><input type="number" id="p-price" min="0" step="0.01" placeholder="$ 69.00"><small class="muted">MXN · sin IVA</small></div>
+                  <div><label for="p-stock">Stock inicial *</label><input type="number" id="p-stock" min="0" step="1" placeholder="20"></div>
+                  <div><label for="p-min">Stock mínimo *</label><input type="number" id="p-min" min="0" step="1" placeholder="10"></div>
+                </div>
+              </div>
+            </div>
+
+            <div class="add-right">
+              <div class="card">
+                <h3>Imagen del producto</h3>
+                <div class="img-box" id="img-box"></div>
+                <div class="file-row" id="file-row">
+                  <div><strong id="file-name">auriculares-studio-pro.png</strong><small id="file-meta">320 KB · Imagen de ejemplo</small></div>
+                  <button type="button" class="icon-btn" id="img-remove" aria-label="Quitar imagen"><i data-icon="trash"></i></button>
+                </div>
+                <input type="file" id="img-input" accept="image/png,image/jpeg" hidden>
+                <button type="button" class="btn btn-outline btn-block" id="img-change"><i data-icon="upload"></i> Cambiar imagen</button>
+                <small class="muted">JPG o PNG · Máximo 5 MB</small>
+              </div>
+
+              <div class="card">
+                <h3>Estado del producto</h3>
+                <label for="p-state">Estado *</label>
+                <select id="p-state"><option>Activo</option><option>Inactivo</option></select>
+                <p class="muted small">Será visible en el inventario y en el registro de ventas cuando lo guardes.</p>
+              </div>
+
+              <div class="note-box tip"><i data-icon="lightbulb"></i><div><strong>Anticípate a las reposiciones</strong><p>Te avisaremos cuando el stock alcance el mínimo definido. Puedes ajustarlo en cualquier momento.</p></div></div>
+
+              <p class="form-error" id="add-error" hidden></p>
+              <button type="submit" class="btn btn-primary btn-block"><i data-icon="check"></i> Guardar producto</button>
+              <button type="button" class="btn btn-outline btn-block" id="add-cancel">Cancelar</button>
+            </div>
+          </form>
+        </section>
+
+      </main>
+    </div>
+  </div>
+
+  <!-- ============ 8. MODAL CERRAR SESIÓN ============ -->
+  <div class="modal-backdrop" id="logout-modal" hidden>
+    <div class="modal" role="dialog" aria-modal="true">
+      <button class="modal-x" data-close aria-label="Cerrar"><i data-icon="x"></i></button>
+      <div class="icon-tile"><i data-icon="logOut"></i></div>
+      <h2>¿Quieres cerrar sesión?</h2>
+      <p class="sub" id="logout-text">Saldrás de tu cuenta. Para volver a gestionar el inventario, tendrás que iniciar sesión de nuevo.</p>
+      <div class="account-box"><span class="avatar" id="m-avatar">AM</span><div><strong id="m-name">Ana Martínez</strong><small id="m-email">ana@novacomercial.mx</small></div></div>
+      <p class="strength"><i data-icon="checkCircle"></i> Todos tus cambios están guardados.</p>
+      <div class="modal-actions">
+        <button class="btn btn-outline" data-close>Seguir en el sistema</button>
+        <button class="btn btn-primary" id="confirm-logout"><i data-icon="logOut"></i> Cerrar sesión</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL INVITAR USUARIO -->
+  <div class="modal-backdrop" id="invite-modal" hidden>
+    <div class="modal" role="dialog" aria-modal="true">
+      <button class="modal-x" data-close aria-label="Cerrar"><i data-icon="x"></i></button>
+      <div class="icon-tile"><i data-icon="userPlus"></i></div>
+      <h2>Invitar usuario</h2>
+      <p class="sub">Enviaremos una invitación para que se una a tu equipo.</p>
+      <form id="invite-form" novalidate>
+        <label for="inv-name">Nombre completo *</label>
+        <input type="text" id="inv-name" placeholder="Nombre y apellido">
+        <label for="inv-email">Correo electrónico *</label>
+        <input type="email" id="inv-email" placeholder="correo@empresa.mx">
+        <label for="inv-role">Rol *</label>
+        <select id="inv-role"><option>Vendedor</option><option>Supervisor</option><option>Administrador</option></select>
+        <p class="form-error" id="invite-error" hidden></p>
+        <div class="modal-actions">
+          <button type="button" class="btn btn-outline" data-close>Cancelar</button>
+          <button type="submit" class="btn btn-primary">Enviar invitación</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div class="toast" id="toast" hidden></div>
+
+  <script src="app.js"></script>
+</body>
+</html>
